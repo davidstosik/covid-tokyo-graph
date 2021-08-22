@@ -19,6 +19,10 @@ jobs:
       - name: Check opendata files
         run: |
           pipenv run python check_opendata_updates.py
+      - name: Set up git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
       - name: Commit changes if any
         run: |
           git add data_hashes.csv
