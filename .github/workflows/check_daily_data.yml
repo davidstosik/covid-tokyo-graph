@@ -18,7 +18,7 @@ jobs:
           pipenv sync
       - name: Check opendata files
         run: |
-          pipenv run check_opendata_updates.py
+          pipenv run python check_opendata_updates.py
       - name: Commit changes if any
         run: |
           git add data_hashes.csv
