@@ -1,8 +1,8 @@
 name: "Check daily data"
 on:
-  schedule:
+  - schedule:
     - cron: '7,22,37,52 * * * *'
-  workflow_dispatch
+  - workflow_dispatch
 jobs:
   run:
     runs-on: ubuntu-latest
