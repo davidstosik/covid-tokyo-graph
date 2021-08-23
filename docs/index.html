@@ -3,8 +3,44 @@
     <title>
       Daily new COVID-19 cases for the Tokyo prefecture
     </title>
+    <script src="https://cdn.jsdelivr.net/combine/npm/chart.js@3.5.1,npm/d3@7.0.1"></script>
   </head>
   <body>
     <h1>Daily new COVID-19 cases for the Tokyo prefecture</h1>
+    <canvas id="daily-new" width="400" height="400"></canvas>
+    <script>
+      d3.csv('https://davidstosik.github.io/covid-tokyo-graph-python/daily.csv').then(makeChart)
+
+      function makeChart(data) {
+        var ctx = document.getElementById('daily-new').getContext('2d');
+        var dates = data.map(function(d) {return d.date});
+        var daily_counts = data.map(function(d) {return +d.count});
+        var rolling_averages = data.map(function(d) {return +d["rolling week average"]});
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: dates,
+            datasets: [
+              {
+                label: 'New cases',
+                data: daily_counts,
+              },
+              {
+                label: 'Rolling week average',
+                data: rolling_averages,
+                type: 'line'
+              }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+    </script>
   </body>
 </html>
