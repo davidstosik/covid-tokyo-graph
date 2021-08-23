@@ -20,7 +20,7 @@ else:
   with open(cache_path, 'w', newline='') as cache_file:
     print(csv_response.content.decode('utf-8-sig').strip(), file=cache_file)
 
-output_path = "daily.csv"
+output_path = "docs/daily.csv"
 
 with open(output_path, 'w', newline='') as csv_output:
   csv_writer = csv.writer(csv_output)
