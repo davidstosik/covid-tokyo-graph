@@ -50,7 +50,7 @@ with open(output_path, 'w', newline='') as csv_output:
       row = [
           date,
           count,
-          int(statistics.mean(rolling_seven))
+          statistics.mean(rolling_seven)
           ]
       csv_writer.writerow(row)
 
