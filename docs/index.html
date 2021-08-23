@@ -7,7 +7,9 @@
   </head>
   <body>
     <h1>Daily new COVID-19 cases for the Tokyo prefecture</h1>
-    <canvas id="daily-new" height="400"></canvas>
+    <div style="height:400px">
+      <canvas id="daily-new"></canvas>
+    </div>
     <script>
       d3.csv('https://davidstosik.github.io/covid-tokyo-graph-python/daily.csv').then(makeChart)
 
