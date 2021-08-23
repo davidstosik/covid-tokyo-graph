@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Daily new COVID-19 cases for the Tokyo prefecture</h1>
-    <canvas id="daily-new" width="400" height="400"></canvas>
+    <canvas id="daily-new" height="400"></canvas>
     <script>
       d3.csv('https://davidstosik.github.io/covid-tokyo-graph-python/daily.csv').then(makeChart)
 
@@ -22,23 +22,29 @@
             labels: dates,
             datasets: [
               {
-                label: 'Rolling week average',
+                label: 'Rolling 7-day average',
                 data: rolling_averages,
                 type: 'line',
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgb(255, 99, 132)',
-                radius: 0
+                borderWidth: 2,
+                radius: 0,
               },
               {
                 label: 'New cases',
                 data: daily_counts,
                 borderColor: 'rgb(54, 162, 235)',
-                backgroundColor: 'rgb(54, 162, 235)',
-              }
+                backgroundColor: 'rgb(54, 162, 235)'
+              },
             ]
           },
           options: {
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+              intersect: false,
+              mode: 'index',
+            },
             scales: {
               x: {
                 ticks: {
