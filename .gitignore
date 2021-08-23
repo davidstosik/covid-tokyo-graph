@@ -1,0 +1,4 @@
+web_cache
+
+# Temporary, see https://github.com/reclosedev/requests-cache/issues/370
+/redirects.sqlite
