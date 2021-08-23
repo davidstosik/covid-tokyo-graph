@@ -1,10 +1,10 @@
-name: "Check daily data"
+name: "Update daily data"
 on:
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 jobs:
-  run:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,15 +18,13 @@ jobs:
           pipenv sync
       - name: Check opendata files
         run: |
-          pipenv run python check_opendata_updates.py
+          pipenv run python generate_daily_csv.py
       - name: Set up git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Commit changes if any
         run: |
-          git add data_hashes.csv
-          git diff --staged --quiet || git commit -m "Update data_hashes.csv from action"
+          git add daily.csv
+          git diff --staged --quiet || git commit -m "Update daily.csv from GitHub Action ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           git push origin
-
-
