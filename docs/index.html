@@ -12,11 +12,11 @@
       d3.csv('https://davidstosik.github.io/covid-tokyo-graph-python/daily.csv').then(makeChart)
 
       function makeChart(data) {
-        var ctx = document.getElementById('daily-new').getContext('2d');
+        //var ctx = document.getElementById('daily-new').getContext('2d');
         var dates = data.map(function(d) {return d.date});
         var daily_counts = data.map(function(d) {return +d.count});
         var rolling_averages = data.map(function(d) {return +d["rolling week average"]});
-        var myChart = new Chart(ctx, {
+        var myChart = new Chart("daily-new", {
           type: 'bar',
           data: {
             labels: dates,
@@ -24,16 +24,30 @@
               {
                 label: 'New cases',
                 data: daily_counts,
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgb(54, 162, 235)',
               },
               {
                 label: 'Rolling week average',
                 data: rolling_averages,
-                type: 'line'
+                type: 'line',
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(255, 99, 132)',
+                radius: 0
               }
             ]
           },
           options: {
+            responsive: false,
             scales: {
+              x: {
+                ticks: {
+                  maxTicksLimit: 10,
+                },
+                grid: {
+                  display: false
+                }
+              },
               y: {
                 beginAtZero: true
               }
