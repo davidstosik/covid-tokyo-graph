@@ -10,7 +10,7 @@ DAILY_CSV_PATH = "docs/daily.csv"
 with open(DAILY_CSV_PATH, 'r') as daily_csv:
   for line in daily_csv: # go to last line
     pass
-  last_update = list(csv.reader([line])][0][0]
+  last_update = list(csv.reader([line]))[0][0]
   if date.fromisoformat(last_update) == date.today():
     print("Today's data was already added. Aborting...")
     sys.exit()
