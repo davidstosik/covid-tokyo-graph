@@ -16,7 +16,7 @@ with open(DAILY_CSV_PATH, 'r') as daily_csv:
     sys.exit()
 
 uri = constants.URIS['details']
-session = requests_cache.CachedSession(backend='filesystem', cache_name='web_cache')
+session = requests_cache.CachedSession(".cache/requests_cache.sqlite")
 csv_response = session.get(uri)
 csv_reader = csv.reader(csv_response.text.strip().split('\r\n'))
 next(csv_reader) # Discard headers
