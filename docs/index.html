@@ -12,7 +12,7 @@
       <canvas id="daily-new"></canvas>
     </div>
     <script>
-      d3.csv('https://davidstosik.github.io/covid-tokyo-graph-python/daily.csv').then(makeChart)
+      d3.csv('./daily.csv').then(makeChart)
 
       function makeChart(data) {
         //var ctx = document.getElementById('daily-new').getContext('2d');
