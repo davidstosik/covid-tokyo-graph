@@ -24,8 +24,7 @@ if __name__ == '__main__':
         pass
       last_update, count, _ = list(csv.reader([line]))[0]
       if date.fromisoformat(last_update) < date.today():
-        print("Today's data isn't available yet.")
-        sys.exit()
+        print(f"!!! This is based on data from {last_update} !!!")
 
 
       print("{:,} new COVID-19 cases reported in Tokyo today.\nhttps://davidstosik.github.io/covid-tokyo-graph-python/".format(int(count)))
