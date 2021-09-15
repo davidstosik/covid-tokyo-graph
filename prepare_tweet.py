@@ -27,7 +27,7 @@ if __name__ == '__main__':
         print(f"!!! This is based on data from {last_update} !!!")
 
 
-      print("{:,} new COVID-19 cases reported in Tokyo today.\nhttps://davidstosik.github.io/covid-tokyo-graph-python/".format(int(count)))
+      print("{:,} new COVID-19 cases reported in Tokyo today.\nhttps://davidstosik.github.io/covid-tokyo-graph/".format(int(count)))
 
 
     http_server = Process(target=start_http_server)
