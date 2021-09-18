@@ -8,7 +8,7 @@ import twitter
 def send_tweet():
   print("Will send follwowing tweet:")
   print(tweet_builder.text())
-  tweet_builder().get_graph_screenshot().save("graph.png")
+  tweet_builder.get_graph_screenshot().save("graph.png")
 
 
 def main():
