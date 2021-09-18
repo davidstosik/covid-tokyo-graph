@@ -1,4 +1,4 @@
-name: "Update daily data"
+name: "Daily script"
 on:
   schedule:
     - cron: '*/15 7-14 * * *'
@@ -18,15 +18,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv sync
-      - name: Check opendata files
+      - name: Run daily script
         run: |
-          pipenv run python generate_daily_csv.py
+          pipenv run python daily.py
       - name: Set up git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - name: Commit changes if any
+      - name: Commit CSV changes if any
         run: |
           git add docs/daily.csv
           git diff --staged --quiet || git commit -m "Update daily.csv from GitHub Action ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           git push origin
+      - name: Commit graph to `screenshot` branch
+        run: |
+          git checkout -b screenshot
+          git add -f graph.png
+          git diff --staged --quiet || git commit -m "Generate graph.png from GitHub Action ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          git push -u origin screenshot
