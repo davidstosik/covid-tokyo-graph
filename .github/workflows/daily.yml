@@ -34,7 +34,7 @@ jobs:
           git push origin
       - name: Commit graph to `screenshot` branch
         run: |
-          git checkout -b screenshot
+          git checkout -B screenshot
           git add -f graph.png
           git diff --staged --quiet || git commit -m "Generate graph.png from GitHub Action ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          git push -u origin screenshot
+          git push -fu origin screenshot
