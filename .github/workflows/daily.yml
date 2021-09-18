@@ -19,6 +19,8 @@ jobs:
           pip install pipenv
           pipenv sync
       - name: Run daily script
+        env:
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
         run: |
           pipenv run python daily.py
       - name: Set up git config
